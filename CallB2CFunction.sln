@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallB2CFunction", "CallB2CFunction\CallB2CFunction.csproj", "{49DDF90A-959F-4AE8-BADA-89DE62837D5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallB2CFunctionDaemon", "CallB2CFunctionDaemon\CallB2CFunctionDaemon.csproj", "{D5EB6678-0281-4C13-8664-B46B017F5EC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49DDF90A-959F-4AE8-BADA-89DE62837D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49DDF90A-959F-4AE8-BADA-89DE62837D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49DDF90A-959F-4AE8-BADA-89DE62837D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49DDF90A-959F-4AE8-BADA-89DE62837D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5EB6678-0281-4C13-8664-B46B017F5EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5EB6678-0281-4C13-8664-B46B017F5EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5EB6678-0281-4C13-8664-B46B017F5EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5EB6678-0281-4C13-8664-B46B017F5EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {580BC6B2-76E0-497D-80F7-B1299B08BC4A}
+	EndGlobalSection
+EndGlobal
