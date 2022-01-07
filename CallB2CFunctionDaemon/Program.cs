@@ -3,15 +3,38 @@ using Microsoft.Identity.Client;
 using Microsoft.Identity.Web;
 using System.Net.Http.Headers;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using CallB2CFunctionShared;
 
-var clientId = "<your clientid>";
-var clientSecret = "secret";
-var Authority = "https://login.microsoftonline.com/<your tenant>.onmicrosoft.com";
-var scopes = new string[] { "<your scopes>" };
+
+IConfiguration config = new ConfigurationBuilder()
+    .AddJsonFile("appsettings-local.json", true, true)
+    .Build();
+var appSettings = config.GetSection("Azure").Get<Settings>();
+
+var clientId = appSettings.ClientID;
+var clientSecret = appSettings.ClientSecret;
+var authority = new Uri("http://x");
+var scopes = new string[0];
+
+if (appSettings.Authority != null)
+{
+    authority = new Uri(appSettings.Authority);
+}
+else
+{
+    Console.WriteLine("Error: Authority is null");
+    return;
+}
+
+
+if (appSettings is not null && appSettings.Scopes is not null)
+    scopes = appSettings.Scopes.Split(" ");
 
 var app = ConfidentialClientApplicationBuilder.Create(clientId)
     .WithClientSecret(clientSecret)
-    .WithAuthority(Authority)
+    .WithAuthority(authority)
     .Build();
 
 var authResult = await app.AcquireTokenForClient(scopes).ExecuteAsync();

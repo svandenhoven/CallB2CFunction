@@ -7,36 +7,36 @@ using System.Text;
 using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
-using CallB2CFunction;
+using CallB2CFunctionShared;
 
 IConfiguration config = new ConfigurationBuilder()
     .AddJsonFile("appsettings-local.json", true, true)
     .Build();
-var appSettings = config.GetSection("Azure").Get<Settings>(); ;
+var appSettings = config.GetSection("azure").Get<Settings>();
 
-var Tenant = appSettings.Tenant;
-var AzureADB2CHostname = appSettings.AzureADB2CHostname;
-var ClientID = appSettings.ClientID;
-var PolicySignUpSignIn = appSettings.PolicySignUpSignIn;
-var AuthorityBase = $"https://{AzureADB2CHostname}/tfp/{Tenant}/";
-var Authority = $"{AuthorityBase}{PolicySignUpSignIn}";
-var Scopes = new string[0];
+var tenant = appSettings.Tenant;
+var azureADB2CHostname = appSettings.Authority;
+var clientID = appSettings.ClientID;
+var policySignUpSignIn = appSettings.PolicySignUpSignIn;
+var authorityBase = $"https://{azureADB2CHostname}/tfp/{tenant}/";
+var authority = $"{authorityBase}{policySignUpSignIn}";
+var scopes = new string[0];
 if (appSettings is not null && appSettings.Scopes is not null)
-    appSettings.Scopes.Split(" ");
+    scopes = appSettings.Scopes.Split(" ");
 
 
-var application = PublicClientApplicationBuilder.Create(ClientID)
+var application = PublicClientApplicationBuilder.Create(clientID)
                .WithRedirectUri("http://localhost:12345")
-               .WithB2CAuthority(Authority)
+               .WithB2CAuthority(authority)
                .Build();
 
 AuthenticationResult authResult = null;
-IEnumerable<IAccount> accounts = await application.GetAccountsAsync(PolicySignUpSignIn);
+IEnumerable<IAccount> accounts = await application.GetAccountsAsync(policySignUpSignIn);
 IAccount account = accounts.FirstOrDefault();
 
 Console.WriteLine("Opening browser to do authentication");
 
-authResult = await application.AcquireTokenInteractive(Scopes)
+authResult = await application.AcquireTokenInteractive(scopes)
                         .WithAccount(account)
                         .ExecuteAsync();
 
@@ -57,7 +57,7 @@ if(authResult != null)
     {
         
         var result = await client.PostAsync(client.BaseAddress, content);
-
+        
         if (result.IsSuccessStatusCode)
         {
             Console.WriteLine(await result.Content.ReadAsStringAsync());

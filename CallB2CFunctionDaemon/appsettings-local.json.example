@@ -3,7 +3,8 @@
     "tenant": "<your tenant>.onmicrosoft.com",
     "authority": "<your tenant>.b2clogin.com",
     "clientID": "<clientID>",
+    "clientsecret": "<client-secret>",
     "policySignUpSignIn": "<policy>",
-    "scopes": "scope1 scope2"
+    "scopes": "<appid>/.default"
   }
 }
