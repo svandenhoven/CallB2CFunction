@@ -1,0 +1,9 @@
+{
+  "Azure": {
+    "tenant": "<your tenant>.onmicrosoft.com",
+    "azureADB2CHostname": "<your tenant>.b2clogin.com",
+    "clientID": "<clientID>",
+    "policySignUpSignIn": "<policy>",
+    "scopes": "scope1 scope2"
+  }
+}
